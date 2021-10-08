@@ -16,9 +16,9 @@ namespace ProductosApp.Formularios
     public partial class FrmProductos : Form
     {
         private IProductoService productoModel;
-        public FrmProductos()
+        public FrmProductos(IProductoService productoService)
         {
-            productoModel = new ProductoModel();
+            productoModel = productoService;
             InitializeComponent();
         }
 

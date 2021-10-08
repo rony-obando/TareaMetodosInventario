@@ -92,7 +92,6 @@
     <Compile Include="Formularios\FrmProductos.Designer.cs">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </Compile>
-    <Compile Include="Formularios\IProductoModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Formularios\FrmGestionEmpleados.resx">
