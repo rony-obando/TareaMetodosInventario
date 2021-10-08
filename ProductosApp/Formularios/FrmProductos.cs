@@ -1,6 +1,7 @@
 ﻿using AppCore.Interfaces;
 using Domain.Enums;
 using Infraestructure.Productos;
+using Infraestructure.Productos.Inventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace ProductosApp.Formularios
     public partial class FrmProductos : Form
     {
         private IProductoService productoModel;
+        public InventarioModel Inventario;
         public FrmProductos(IProductoService productoService)
         {
             productoModel = productoService;
@@ -35,6 +37,7 @@ namespace ProductosApp.Formularios
         {
             FrmProducto frmProducto = new FrmProducto();
             frmProducto.PModel = productoModel;
+            frmProducto.Inventario = Inventario;
             frmProducto.ShowDialog();
 
             rtbProductView.Text = productoModel.GetProductosAsJson();

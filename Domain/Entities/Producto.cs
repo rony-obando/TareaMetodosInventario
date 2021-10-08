@@ -9,16 +9,15 @@ namespace Domain.Entities
     {
        
 
-        public int Id { get; set; }
+        
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public DateTime FechaVencimiento { get; set; }
         public UnidadMedida UnidadMedida { get; set; }
-        public Producto(int exist,decimal prec , int id, string nombre, string descripcion, DateTime fechaVencimiento, UnidadMedida unidadMedida) : base( exist, prec)
+        public Producto(int id,int exist, decimal prec,string nombre, string descripcion, DateTime fechaVencimiento, UnidadMedida unidadMedida) : base(id, exist, prec)
         {
             this.Existencia = exist;
             this.Descripcion = descripcion;
-            this.Id = id;
             this.Precio = prec;
             this.FechaVencimiento = fechaVencimiento;
             this.UnidadMedida = unidadMedida;

@@ -10,9 +10,27 @@ namespace Domain.Entities
         
 
         public Especie especie { get; set; }
-        public CalculoInventario(int a,decimal b,Especie especie):base(a,b )
+        public CalculoInventario(int c,int a,decimal b,Especie especie):base(c,a,b )
         {
             
+        }
+        public class InventaById : IComparer<CalculoInventario>
+        {
+            public int Compare(CalculoInventario x, CalculoInventario y)
+            {
+                if (x.ID < y.ID)
+                {
+                    return -1;
+                }
+                else if (x.ID > y.ID)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
 
     }

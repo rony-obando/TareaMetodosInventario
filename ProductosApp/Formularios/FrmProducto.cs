@@ -2,6 +2,7 @@
 using Domain.Entities;
 using Domain.Enums;
 using Infraestructure.Productos;
+using Infraestructure.Productos.Inventario;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,7 @@ namespace ProductosApp.Formularios
     public partial class FrmProducto : Form
     {
         public IProductoService PModel { get; set; }
+        public InventarioModel Inventario;
         public int a;
         public FrmProducto(int b)
         {
@@ -48,6 +50,8 @@ namespace ProductosApp.Formularios
                 nudPrice.Visible = false;
                 dtpCaducity.Visible = false;
                 cmbMeasureUnit.Visible = false;
+                lblID.Visible = false;
+                nudID.Visible = false;
             }
         }
 

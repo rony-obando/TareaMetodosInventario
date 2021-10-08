@@ -26,10 +26,10 @@ namespace Infraestructure.Productos
                 throw new ArgumentException("El producto no puede ser null.");
             }
 
-            int index = GetIndexById(p.Id);
+            int index = GetIndexById(p.ID);
             if(index < 0)
             {
-                throw new Exception($"El producto con id {p.Id} no se encuentra.");
+                throw new Exception($"El producto con id {p.ID} no se encuentra.");
             }
 
             productos[index] = p;
@@ -43,10 +43,10 @@ namespace Infraestructure.Productos
                 throw new ArgumentException("El producto no puede ser null.");
             }
 
-            int index = GetIndexById(p.Id);
+            int index = GetIndexById(p.ID);
             if (index < 0)
             {
-                throw new Exception($"El producto con id {p.Id} no se encuentra.");
+                throw new Exception($"El producto con id {p.ID} no se encuentra.");
             }
 
             if(index != productos.Length - 1)
@@ -150,7 +150,7 @@ namespace Infraestructure.Productos
 
         public int GetLastProductoId()
         {
-            return productos == null ? 0 : productos[productos.Length - 1].Id;
+            return productos == null ? 0 : productos[productos.Length - 1].ID;
         }
         #endregion
 
@@ -185,7 +185,7 @@ namespace Infraestructure.Productos
 
             foreach (Producto p in productos)
             {
-                if(p.Id == id)
+                if(p.ID == id)
                 {
                     index = i;
                     break;
