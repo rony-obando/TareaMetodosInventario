@@ -12,6 +12,7 @@ namespace Infraestructure.Productos.Inventario
         public void Add(CalculoInventario c)
         {
             Add(c, ref inventario);
+            Array.Sort(inventario, new CalculoInventario.InventaById());
         }
         private void Add(CalculoInventario p, ref CalculoInventario[] pds)
         {
@@ -26,15 +27,15 @@ namespace Infraestructure.Productos.Inventario
             Array.Copy(pds, tmp, pds.Length);
             tmp[tmp.Length - 1] = p;
             pds = tmp;
+           
         }
-
         public int GetExistencias()
         {
             int a = 0;
             int b = 0;
             foreach (CalculoInventario c in inventario)
             {
-                if (c.especie==Especie.Entrada)
+                if (c.especie == Especie.Entrada)
                 {
                     a = c.Existencia + a;
                 }
@@ -43,10 +44,15 @@ namespace Infraestructure.Productos.Inventario
                     b = c.Existencia + b;
                 }
             }
+            /*foreach (CalculoInventario c in Ventas)
+            {
+                    b = c.Existencia + b;
+                
+            }*/
             int d = 0;
             if (b > a)
             {
-                throw new ArgumentException("Error de cantidades");
+                //throw new ArgumentException("Error de cantidades");
             }
             else
             {
@@ -54,93 +60,221 @@ namespace Infraestructure.Productos.Inventario
             }
             return d;
         }
-       // public CalculoInventario H=new CalculoInventario();
-        public void RegistrarUEPS(CalculoInventario c,Especie e)
+        public decimal GetTotalPrecio()
         {
-            if (e == Especie.Salida)
+            decimal a = 0;
+            decimal b = 0;
+            decimal precioT;
+            foreach (CalculoInventario c in inventario)
             {
-                for (int i = inventario.Length - 1; i < 0; i--)
+                if (c.especie == Especie.Entrada)
                 {
-
-                    if (inventario[i].Existencia < c.Existencia)
-                    {
-                        if (c.Existencia != 0)
-                        {
-                            c.Existencia = c.Existencia - inventario[i].Existencia;
-                            Delete(inventario[i]);
-                            c.Precio = inventario[i].Precio;
-                            c.especie = e;
-                            Add(c);
-                        }
-                       
-                    }
-
-
+                    precioT = c.Existencia * c.Precio;
+                    a = precioT + a;
+                }
+                else
+                {
+                    precioT = c.Existencia * c.Precio;
+                    b = precioT + b;
                 }
             }
-
-            
+            decimal d = 0;
+            if (b > a)
+            {
+                //throw new ArgumentException("Error de cantidades");
+            }
+            else
+            {
+                d = a - b;
+            }
+            return d;
         }
-        /*public void RegistrarPEPS(CalculoInventario c, Especie e)
+        public decimal PEPSSalida(int ventas, DateTime dt, int ID)
         {
-
-            if (e == Especie.Salida)
+            decimal PrecioV = 0;
+            CalculoInventario[] inv = new CalculoInventario[inventario.Length];
+            Array.Copy(inventario, inv, inventario.Length);
+            int i = 0;
+            while (ventas > 0)
             {
-                c.Precio = inventario[inventario.Length - 1].Precio;
-                c.especie = e;
-                Add(c);
+                if (inv[i].Existencia != 0)
+                {
+                    if (ventas > inv[i].Existencia)
+                    {
+                        if (inv[i].especie == Especie.Entrada)
+                        {
+                            PrecioV = inv[i].Precio;
+                            int a = ventas;
+                            ventas = ventas - inv[i].Existencia;
+                            if (ventas > 0)
+                            {
+                                CalculoInventario model = new CalculoInventario(ID, inv[i].Existencia, PrecioV, Especie.Salida, dt)
+                                {
+                                    Metodo = Metodo.PEPS,
+                                };
+                                Add(model);
+                            }
+                            else
+                            {
+                                CalculoInventario model = new CalculoInventario(ID, a, PrecioV, Especie.Salida, dt)
+                                {
+                                    Metodo = Metodo.PEPS,
+                                };
+                                Add(model);
+
+                            }
+
+                            i++;
+                        }
+                    }
+                    else
+                    {
+                        if (inv[i].especie == Especie.Entrada)
+                        {
+                            PrecioV = inv[i].Precio;
+                            CalculoInventario model = new CalculoInventario(ID, ventas, PrecioV, Especie.Salida, dt)
+                            {
+                                Metodo = Metodo.PEPS,
+                            };
+                            Add(model);
+                            ventas = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    i++;
+                }
+
             }
-
-
-        }*/
-        public bool Delete(CalculoInventario p)
-        {
-            if (p == null)
-            {
-                throw new ArgumentException("El producto no puede ser null.");
-            }
-
-            int index = GetIndexById(p.ID);
-            if (index < 0)
-            {
-                throw new Exception($"El producto con id {p.ID} no se encuentra.");
-            }
-
-            if (index != inventario.Length - 1)
-            {
-                inventario[index] = inventario[inventario.Length - 1];
-            }
-
-            CalculoInventario[] tmp = new CalculoInventario[inventario.Length - 1];
-            Array.Copy(inventario, tmp, tmp.Length);
-            inventario = tmp;
-            Array.Sort(inventario, new CalculoInventario.InventaById());
-            return inventario.Length == tmp.Length;
+            return PrecioV;
         }
-        private int GetIndexById(int id)
+        public decimal UEPSSalida(int ventas, DateTime dt, int ID)
         {
-            if (id <= 0)
+            decimal PrecioV = 0;
+            CalculoInventario[] inv = new CalculoInventario[inventario.Length];
+            Array.Copy(inventario, inv, inventario.Length);
+            int i = inventario.Length - 1;
+            while (ventas > 0)
             {
-                throw new ArgumentException("El id no puede ser negativo o cero.");
-            }
+                if (inv[i].Existencia != 0)
+                {
+                    if (ventas > inv[i].Existencia)
+                    {
+                        if (inv[i].especie == Especie.Entrada)
+                        {
+                            PrecioV = inv[i].Precio;
+                            int a = ventas;
+                            ventas = ventas - inv[i].Existencia;
+                            if (ventas > 0)
+                            {
+                                CalculoInventario model = new CalculoInventario(ID, inv[i].Existencia, PrecioV, Especie.Salida, dt)
+                                {
+                                    Metodo = Metodo.PEPS,
+                                };
+                                Add(model);
+                            }
+                            else
+                            {
+                                CalculoInventario model = new CalculoInventario(ID, a, PrecioV, Especie.Salida, dt)
+                                {
+                                    Metodo = Metodo.PEPS,
+                                };
+                                Add(model);
 
-            int index = int.MinValue, i = 0;
+                            }
+
+                            i--;
+                        }
+                    }
+                    else
+                    {
+                        if (inv[i].especie == Especie.Entrada)
+                        {
+                            PrecioV = inv[i].Precio;
+                            CalculoInventario model = new CalculoInventario(ID, ventas, PrecioV, Especie.Salida, dt)
+                            {
+                                Metodo = Metodo.PEPS,
+                            };
+                            Add(model);
+                            ventas = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    i--;
+                }
+
+            }
+            return PrecioV;
+        }
+        public void PromedioSimple(int ventas, DateTime dt, int ID)
+        {
             if (inventario == null)
             {
-                return index;
+                return;
             }
-
-            foreach (CalculoInventario p in inventario)
+            int a = 0;
+            decimal b = 0;
+            foreach (CalculoInventario c in inventario)
             {
-                if (p.ID == id)
+                if (c.especie == Especie.Entrada)
                 {
-                    index = i;
-                    break;
+                    b = c.Precio + b;
+                    a++;
                 }
-                i++;
             }
+            decimal promedio = b / a;
+            CalculoInventario model = new CalculoInventario(ID, ventas, promedio, Especie.Salida, dt)
+            {
+                Metodo = Metodo.PromedioSimple,
+            };
+            Add(model);
+        }
+        public void PromedioPonderado(int ventas, DateTime dt, int ID)
+        {
+            if (inventario == null)
+            {
+                return;
+            }
+            int a = 0;
+            decimal b = 0;
+            foreach (CalculoInventario c in inventario)
+            {
+                int f = c.Existencia;
+                if (c.especie == Especie.Entrada)
+                {
+                    b = (c.Precio * f)+b;
+                    a=f+a;
+                }
+            }
+            decimal promedio = b / a;
+            CalculoInventario model = new CalculoInventario(ID, ventas, promedio, Especie.Salida, dt)
+            {
+                Metodo = Metodo.PromedioPonderado,
+            };
+            Add(model);
+        }
+        public string Mostrar()
+        {
+            string control = "";
+            for(int i=inventario.Length-1;i>=0; i--)
+            {
+                if (inventario[i].especie == Especie.Salida)
+                {
+                    control = $@"Fecha: {inventario[i].date}, Especie: {inventario[i].especie}, Existencias: {inventario[i].Existencia}, Precio/Unidad: {inventario[i].Precio}, Precio Total:{inventario[i].Precio * inventario[i].Existencia}, Metodo: {inventario[i].Metodo}{Environment.NewLine}" + control;
+                }
+                else
+                {
 
-            return index;
+                    control = $@"Fecha: {inventario[i].date}, Especie: {inventario[i].especie}, Existencias: {inventario[i].Existencia}, Precio/Unidad: {inventario[i].Precio}, Precio Total:{inventario[i].Precio * inventario[i].Existencia}{Environment.NewLine}" + control;
+                }
+            }
+         string total = $"{Environment.NewLine}Total Existencias: {GetExistencias()} Total de Saldo:{GetTotalPrecio()}";
+            control = control + total;
+            return control;
+          
         }
     }
 }

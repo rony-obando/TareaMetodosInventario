@@ -32,12 +32,14 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnNew = new System.Windows.Forms.Button();
+            this.btnExtraer = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.cmbFinderType = new System.Windows.Forms.ComboBox();
             this.cmbMeasureUnit = new System.Windows.Forms.ComboBox();
             this.txtFinder = new System.Windows.Forms.TextBox();
             this.rtbProductView = new System.Windows.Forms.RichTextBox();
             this.btnFind = new System.Windows.Forms.Button();
-            this.btnExtraer = new System.Windows.Forms.Button();
+            this.cmbMetodo = new System.Windows.Forms.ComboBox();
             this.flowLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,9 +49,10 @@
             this.flowLayoutPanel1.Controls.Add(this.btnUpdate);
             this.flowLayoutPanel1.Controls.Add(this.btnNew);
             this.flowLayoutPanel1.Controls.Add(this.btnExtraer);
+            this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 322);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(582, 34);
             this.flowLayoutPanel1.TabIndex = 0;
@@ -57,7 +60,7 @@
             // btnDelete
             // 
             this.btnDelete.Location = new System.Drawing.Point(505, 2);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(75, 24);
             this.btnDelete.TabIndex = 0;
@@ -67,7 +70,7 @@
             // btnUpdate
             // 
             this.btnUpdate.Location = new System.Drawing.Point(426, 2);
-            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(2);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(75, 24);
             this.btnUpdate.TabIndex = 1;
@@ -77,69 +80,13 @@
             // btnNew
             // 
             this.btnNew.Location = new System.Drawing.Point(347, 2);
-            this.btnNew.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNew.Margin = new System.Windows.Forms.Padding(2);
             this.btnNew.Name = "btnNew";
             this.btnNew.Size = new System.Drawing.Size(75, 24);
             this.btnNew.TabIndex = 2;
             this.btnNew.Text = "Nuevo";
             this.btnNew.UseVisualStyleBackColor = true;
             this.btnNew.Click += new System.EventHandler(this.BtnNew_Click);
-            // 
-            // cmbFinderType
-            // 
-            this.cmbFinderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbFinderType.FormattingEnabled = true;
-            this.cmbFinderType.Items.AddRange(new object[] {
-            "Id",
-            "Rango Precio",
-            "Fecha vencimiento",
-            "Unidad Medida"});
-            this.cmbFinderType.Location = new System.Drawing.Point(9, 10);
-            this.cmbFinderType.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cmbFinderType.Name = "cmbFinderType";
-            this.cmbFinderType.Size = new System.Drawing.Size(164, 21);
-            this.cmbFinderType.TabIndex = 1;
-            this.cmbFinderType.SelectedIndexChanged += new System.EventHandler(this.CmbFinderType_SelectedIndexChanged);
-            // 
-            // cmbMeasureUnit
-            // 
-            this.cmbMeasureUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMeasureUnit.FormattingEnabled = true;
-            this.cmbMeasureUnit.Location = new System.Drawing.Point(176, 10);
-            this.cmbMeasureUnit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.cmbMeasureUnit.Name = "cmbMeasureUnit";
-            this.cmbMeasureUnit.Size = new System.Drawing.Size(143, 21);
-            this.cmbMeasureUnit.TabIndex = 2;
-            this.cmbMeasureUnit.Visible = false;
-            // 
-            // txtFinder
-            // 
-            this.txtFinder.Location = new System.Drawing.Point(176, 10);
-            this.txtFinder.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.txtFinder.Name = "txtFinder";
-            this.txtFinder.Size = new System.Drawing.Size(318, 20);
-            this.txtFinder.TabIndex = 3;
-            this.txtFinder.Visible = false;
-            // 
-            // rtbProductView
-            // 
-            this.rtbProductView.Location = new System.Drawing.Point(9, 34);
-            this.rtbProductView.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.rtbProductView.Name = "rtbProductView";
-            this.rtbProductView.ReadOnly = true;
-            this.rtbProductView.Size = new System.Drawing.Size(583, 284);
-            this.rtbProductView.TabIndex = 4;
-            this.rtbProductView.Text = "";
-            // 
-            // btnFind
-            // 
-            this.btnFind.Location = new System.Drawing.Point(498, 11);
-            this.btnFind.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnFind.Name = "btnFind";
-            this.btnFind.Size = new System.Drawing.Size(91, 19);
-            this.btnFind.TabIndex = 5;
-            this.btnFind.Text = "Buscar";
-            this.btnFind.UseVisualStyleBackColor = true;
             // 
             // btnExtraer
             // 
@@ -151,18 +98,99 @@
             this.btnExtraer.UseVisualStyleBackColor = true;
             this.btnExtraer.Click += new System.EventHandler(this.btnExtraer_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(110, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(151, 23);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Mostrar Control de Inventario";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmbFinderType
+            // 
+            this.cmbFinderType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbFinderType.FormattingEnabled = true;
+            this.cmbFinderType.Items.AddRange(new object[] {
+            "Id",
+            "Rango Precio",
+            "Fecha vencimiento",
+            "Unidad Medida"});
+            this.cmbFinderType.Location = new System.Drawing.Point(9, 10);
+            this.cmbFinderType.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbFinderType.Name = "cmbFinderType";
+            this.cmbFinderType.Size = new System.Drawing.Size(164, 21);
+            this.cmbFinderType.TabIndex = 1;
+            this.cmbFinderType.SelectedIndexChanged += new System.EventHandler(this.CmbFinderType_SelectedIndexChanged);
+            // 
+            // cmbMeasureUnit
+            // 
+            this.cmbMeasureUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMeasureUnit.FormattingEnabled = true;
+            this.cmbMeasureUnit.Location = new System.Drawing.Point(176, 10);
+            this.cmbMeasureUnit.Margin = new System.Windows.Forms.Padding(2);
+            this.cmbMeasureUnit.Name = "cmbMeasureUnit";
+            this.cmbMeasureUnit.Size = new System.Drawing.Size(143, 21);
+            this.cmbMeasureUnit.TabIndex = 2;
+            this.cmbMeasureUnit.Visible = false;
+            // 
+            // txtFinder
+            // 
+            this.txtFinder.Location = new System.Drawing.Point(176, 10);
+            this.txtFinder.Margin = new System.Windows.Forms.Padding(2);
+            this.txtFinder.Name = "txtFinder";
+            this.txtFinder.Size = new System.Drawing.Size(159, 20);
+            this.txtFinder.TabIndex = 3;
+            this.txtFinder.Visible = false;
+            // 
+            // rtbProductView
+            // 
+            this.rtbProductView.Location = new System.Drawing.Point(9, 34);
+            this.rtbProductView.Margin = new System.Windows.Forms.Padding(2);
+            this.rtbProductView.Name = "rtbProductView";
+            this.rtbProductView.ReadOnly = true;
+            this.rtbProductView.Size = new System.Drawing.Size(583, 284);
+            this.rtbProductView.TabIndex = 4;
+            this.rtbProductView.Text = "";
+            // 
+            // btnFind
+            // 
+            this.btnFind.Location = new System.Drawing.Point(498, 11);
+            this.btnFind.Margin = new System.Windows.Forms.Padding(2);
+            this.btnFind.Name = "btnFind";
+            this.btnFind.Size = new System.Drawing.Size(91, 19);
+            this.btnFind.TabIndex = 5;
+            this.btnFind.Text = "Buscar";
+            this.btnFind.UseVisualStyleBackColor = true;
+            // 
+            // cmbMetodo
+            // 
+            this.cmbMetodo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMetodo.FormattingEnabled = true;
+            this.cmbMetodo.Items.AddRange(new object[] {
+            "PEPS",
+            "UEPS",
+            "Promedio Simple",
+            "Promedio Ponderado"});
+            this.cmbMetodo.Location = new System.Drawing.Point(341, 11);
+            this.cmbMetodo.Name = "cmbMetodo";
+            this.cmbMetodo.Size = new System.Drawing.Size(152, 21);
+            this.cmbMetodo.TabIndex = 6;
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 366);
+            this.Controls.Add(this.cmbMetodo);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.rtbProductView);
             this.Controls.Add(this.txtFinder);
             this.Controls.Add(this.cmbMeasureUnit);
             this.Controls.Add(this.cmbFinderType);
             this.Controls.Add(this.flowLayoutPanel1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmProductos";
             this.Text = "Catalogo de productos";
             this.Load += new System.EventHandler(this.FrmProductos_Load);
@@ -184,5 +212,7 @@
         private System.Windows.Forms.RichTextBox rtbProductView;
         private System.Windows.Forms.Button btnFind;
         private System.Windows.Forms.Button btnExtraer;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox cmbMetodo;
     }
 }

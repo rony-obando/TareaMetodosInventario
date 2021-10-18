@@ -45,6 +45,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
+            this.cmbMetodos = new System.Windows.Forms.ComboBox();
+            this.lblMetodo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudExist)).BeginInit();
@@ -53,6 +55,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblMetodo);
+            this.groupBox1.Controls.Add(this.cmbMetodos);
             this.groupBox1.Controls.Add(this.lblSalida);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
@@ -98,12 +102,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 228);
+            this.label5.Location = new System.Drawing.Point(11, 230);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(101, 13);
+            this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Fecha Vencimiento:";
+            this.label5.Text = "Fecha:";
             // 
             // label4
             // 
@@ -262,6 +266,31 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
+            // cmbMetodos
+            // 
+            this.cmbMetodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMetodos.FormattingEnabled = true;
+            this.cmbMetodos.Items.AddRange(new object[] {
+            "PEPS",
+            "UEPS",
+            "Promedio simple",
+            "Promedio ponderado"});
+            this.cmbMetodos.Location = new System.Drawing.Point(104, 19);
+            this.cmbMetodos.Name = "cmbMetodos";
+            this.cmbMetodos.Size = new System.Drawing.Size(237, 21);
+            this.cmbMetodos.TabIndex = 13;
+            this.cmbMetodos.Visible = false;
+            // 
+            // lblMetodo
+            // 
+            this.lblMetodo.AutoSize = true;
+            this.lblMetodo.Location = new System.Drawing.Point(7, 19);
+            this.lblMetodo.Name = "lblMetodo";
+            this.lblMetodo.Size = new System.Drawing.Size(46, 13);
+            this.lblMetodo.TabIndex = 14;
+            this.lblMetodo.Text = "Metodo:";
+            this.lblMetodo.Visible = false;
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -301,5 +330,7 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Label lblSalida;
+        private System.Windows.Forms.Label lblMetodo;
+        private System.Windows.Forms.ComboBox cmbMetodos;
     }
 }

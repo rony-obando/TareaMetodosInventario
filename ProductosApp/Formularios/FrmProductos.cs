@@ -21,6 +21,7 @@ namespace ProductosApp.Formularios
         public FrmProductos(IProductoService productoService)
         {
             productoModel = productoService;
+            Inventario = new InventarioModel();
             InitializeComponent();
         }
 
@@ -30,17 +31,15 @@ namespace ProductosApp.Formularios
                                               .Cast<object>()
                                               .ToArray()
                                           );
-
         }
 
         private void BtnNew_Click(object sender, EventArgs e)
         {
-            FrmProducto frmProducto = new FrmProducto();
-            frmProducto.PModel = productoModel;
-            frmProducto.Inventario = Inventario;
+            FrmProducto frmProducto = new FrmProducto(Inventario);
+            frmProducto.PModel = productoModel; 
             frmProducto.ShowDialog();
-
             rtbProductView.Text = productoModel.GetProductosAsJson();
+            
         }
 
         private void CmbFinderType_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,9 +59,21 @@ namespace ProductosApp.Formularios
 
         private void btnExtraer_Click(object sender, EventArgs e)
         {
-            FrmProducto frmProducto = new FrmProducto(2);
+            FrmProducto frmProducto = new FrmProducto(2,Inventario);
             frmProducto.PModel = productoModel;
             frmProducto.ShowDialog();
         }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                rtbProductView.Text = Inventario.Mostrar();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

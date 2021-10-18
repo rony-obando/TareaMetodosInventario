@@ -150,7 +150,22 @@ namespace Infraestructure.Productos
 
         public int GetLastProductoId()
         {
-            return productos == null ? 0 : productos[productos.Length - 1].ID;
+            int a = int.MinValue;
+            if (productos == null)
+            {
+                return 0;
+            }
+            else
+            {
+                foreach(Producto p in productos)
+                {
+                    if (p.ID>a)
+                    {
+                        a = p.ID;
+                    }
+                }
+            }
+            return a;
         }
         #endregion
 

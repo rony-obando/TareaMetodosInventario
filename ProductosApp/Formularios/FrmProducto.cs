@@ -20,10 +20,16 @@ namespace ProductosApp.Formularios
         public IProductoService PModel { get; set; }
         public InventarioModel Inventario;
         public int a;
-        public FrmProducto(int b)
+        public FrmProducto(int b, InventarioModel i)
         {
             InitializeComponent();
             this.a=b;
+            Inventario = i;
+        }
+        public FrmProducto(InventarioModel i)
+        {
+            InitializeComponent();
+            Inventario = i;
         }
         public FrmProducto()
         {
@@ -43,15 +49,14 @@ namespace ProductosApp.Formularios
                 label2.Visible = false;
                 label3.Visible = false;
                 label4.Visible = false;
-                label5.Visible = false;
                 label6.Visible = false;
                 txtNombre.Visible = false;
                 txtDesc.Visible = false;
                 nudPrice.Visible = false;
-                dtpCaducity.Visible = false;
                 cmbMeasureUnit.Visible = false;
-                lblID.Visible = false;
-                nudID.Visible = false;
+                lblMetodo.Visible = true;
+                cmbMetodos.Visible = true;
+               
             }
         }
 
@@ -59,28 +64,29 @@ namespace ProductosApp.Formularios
         {
             if (a == 2)
             {
-                Producto p = new Producto((int)nudExist.Value, nudPrice.Value, PModel.GetLastProductoId() + 1, txtNombre.Text, txtDesc.Text, dtpCaducity.Value, (UnidadMedida)cmbMeasureUnit.SelectedIndex)
+                switch (cmbMetodos.SelectedIndex)
                 {
-                    //Id = PModel.GetLastProductoId() + 1,
-                    //Existencia = (int)nudExist.Value,
-                };
+                    case 0:
+                        Inventario.PEPSSalida((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        break;
+                    case 1:
+                        Inventario.UEPSSalida((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        break;
+                    case 2:
+                        Inventario.PromedioSimple((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        break;
+                    case 3:
+                        Inventario.PromedioPonderado((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        break;
+                }
                 Dispose();
             }
             else
             {
-                Producto p = new Producto((int)nudExist.Value, nudPrice.Value, PModel.GetLastProductoId() + 1, txtNombre.Text, txtDesc.Text, dtpCaducity.Value, (UnidadMedida)cmbMeasureUnit.SelectedIndex)
-                {
-                    //Id = PModel.GetLastProductoId() + 1,
-                   // Nombre = txtNombre.Text,
-                   // Descripcion = txtDesc.Text,
-                   // Existencia = (int)nudExist.Value,
-                    //Precio = nudPrice.Value,
-                   // FechaVencimiento = dtpCaducity.Value,
-                    //UnidadMedida = (UnidadMedida)cmbMeasureUnit.SelectedIndex
-                };
-
+                Producto p = new Producto(PModel.GetLastProductoId() + 1, (int)nudExist.Value, nudPrice.Value, txtNombre.Text, txtDesc.Text, dtpCaducity.Value, (UnidadMedida)cmbMeasureUnit.SelectedIndex);
+                CalculoInventario c = new CalculoInventario(p.ID,p.Existencia,p.Precio,Especie.Entrada, dtpCaducity.Value);
                 PModel.Create(p);
-
+                Inventario.Add(c);
                 Dispose();
             }
         }
