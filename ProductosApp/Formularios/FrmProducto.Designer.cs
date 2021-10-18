@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblMetodo = new System.Windows.Forms.Label();
+            this.cmbMetodos = new System.Windows.Forms.ComboBox();
             this.lblSalida = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -45,8 +47,8 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
-            this.cmbMetodos = new System.Windows.Forms.ComboBox();
-            this.lblMetodo = new System.Windows.Forms.Label();
+            this.lblfecha = new System.Windows.Forms.Label();
+            this.dtpRegistro = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudExist)).BeginInit();
@@ -55,6 +57,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dtpRegistro);
+            this.groupBox1.Controls.Add(this.lblfecha);
             this.groupBox1.Controls.Add(this.lblMetodo);
             this.groupBox1.Controls.Add(this.cmbMetodos);
             this.groupBox1.Controls.Add(this.lblSalida);
@@ -74,10 +78,35 @@
             this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(2);
-            this.groupBox1.Size = new System.Drawing.Size(351, 292);
+            this.groupBox1.Size = new System.Drawing.Size(351, 315);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Producto";
+            // 
+            // lblMetodo
+            // 
+            this.lblMetodo.AutoSize = true;
+            this.lblMetodo.Location = new System.Drawing.Point(7, 19);
+            this.lblMetodo.Name = "lblMetodo";
+            this.lblMetodo.Size = new System.Drawing.Size(46, 13);
+            this.lblMetodo.TabIndex = 14;
+            this.lblMetodo.Text = "Metodo:";
+            this.lblMetodo.Visible = false;
+            // 
+            // cmbMetodos
+            // 
+            this.cmbMetodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMetodos.FormattingEnabled = true;
+            this.cmbMetodos.Items.AddRange(new object[] {
+            "PEPS",
+            "UEPS",
+            "Promedio simple",
+            "Promedio ponderado"});
+            this.cmbMetodos.Location = new System.Drawing.Point(104, 19);
+            this.cmbMetodos.Name = "cmbMetodos";
+            this.cmbMetodos.Size = new System.Drawing.Size(237, 21);
+            this.cmbMetodos.TabIndex = 13;
+            this.cmbMetodos.Visible = false;
             // 
             // lblSalida
             // 
@@ -102,12 +131,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(11, 230);
+            this.label5.Location = new System.Drawing.Point(-3, 227);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
+            this.label5.Size = new System.Drawing.Size(108, 13);
             this.label5.TabIndex = 10;
-            this.label5.Text = "Fecha:";
+            this.label5.Text = "Fecha de caducidad:";
             // 
             // label4
             // 
@@ -239,7 +268,7 @@
             this.flowLayoutPanel1.Controls.Add(this.btnCancel);
             this.flowLayoutPanel1.Controls.Add(this.btnOk);
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(9, 306);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(16, 329);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(351, 33);
@@ -266,36 +295,27 @@
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.BtnOk_Click);
             // 
-            // cmbMetodos
+            // lblfecha
             // 
-            this.cmbMetodos.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbMetodos.FormattingEnabled = true;
-            this.cmbMetodos.Items.AddRange(new object[] {
-            "PEPS",
-            "UEPS",
-            "Promedio simple",
-            "Promedio ponderado"});
-            this.cmbMetodos.Location = new System.Drawing.Point(104, 19);
-            this.cmbMetodos.Name = "cmbMetodos";
-            this.cmbMetodos.Size = new System.Drawing.Size(237, 21);
-            this.cmbMetodos.TabIndex = 13;
-            this.cmbMetodos.Visible = false;
+            this.lblfecha.AutoSize = true;
+            this.lblfecha.Location = new System.Drawing.Point(-3, 291);
+            this.lblfecha.Name = "lblfecha";
+            this.lblfecha.Size = new System.Drawing.Size(92, 13);
+            this.lblfecha.TabIndex = 15;
+            this.lblfecha.Text = "Fecha de registro:";
             // 
-            // lblMetodo
+            // dtpRegistro
             // 
-            this.lblMetodo.AutoSize = true;
-            this.lblMetodo.Location = new System.Drawing.Point(7, 19);
-            this.lblMetodo.Name = "lblMetodo";
-            this.lblMetodo.Size = new System.Drawing.Size(46, 13);
-            this.lblMetodo.TabIndex = 14;
-            this.lblMetodo.Text = "Metodo:";
-            this.lblMetodo.Visible = false;
+            this.dtpRegistro.Location = new System.Drawing.Point(104, 285);
+            this.dtpRegistro.Name = "dtpRegistro";
+            this.dtpRegistro.Size = new System.Drawing.Size(237, 20);
+            this.dtpRegistro.TabIndex = 16;
             // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(365, 345);
+            this.ClientSize = new System.Drawing.Size(365, 362);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.groupBox1);
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -332,5 +352,7 @@
         private System.Windows.Forms.Label lblSalida;
         private System.Windows.Forms.Label lblMetodo;
         private System.Windows.Forms.ComboBox cmbMetodos;
+        private System.Windows.Forms.DateTimePicker dtpRegistro;
+        private System.Windows.Forms.Label lblfecha;
     }
 }

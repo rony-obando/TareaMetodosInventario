@@ -18,24 +18,17 @@ namespace ProductosApp.Formularios
     public partial class FrmProducto : Form
     {
         public IProductoService PModel { get; set; }
-        public InventarioModel Inventario;
+        public IInventarioService Inventario;
         public int a;
-        public FrmProducto(int b, InventarioModel i)
+        public FrmProducto(int b )
         {
             InitializeComponent();
             this.a=b;
-            Inventario = i;
-        }
-        public FrmProducto(InventarioModel i)
-        {
-            InitializeComponent();
-            Inventario = i;
         }
         public FrmProducto()
         {
             InitializeComponent();
         }
-
         private void FrmProducto_Load(object sender, EventArgs e)
         {
             cmbMeasureUnit.Items.AddRange(Enum.GetValues(typeof(UnidadMedida))
@@ -56,6 +49,8 @@ namespace ProductosApp.Formularios
                 cmbMeasureUnit.Visible = false;
                 lblMetodo.Visible = true;
                 cmbMetodos.Visible = true;
+                label5.Visible = false;
+                dtpCaducity.Visible = false;
                
             }
         }
@@ -70,13 +65,13 @@ namespace ProductosApp.Formularios
                         Inventario.PEPSSalida((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
                         break;
                     case 1:
-                        Inventario.UEPSSalida((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        Inventario.UEPSSalida((int)nudExist.Value, dtpRegistro.Value, PModel.GetLastProductoId());
                         break;
                     case 2:
-                        Inventario.PromedioSimple((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        Inventario.PromedioSimple((int)nudExist.Value, dtpRegistro.Value, PModel.GetLastProductoId());
                         break;
                     case 3:
-                        Inventario.PromedioPonderado((int)nudExist.Value, dtpCaducity.Value, PModel.GetLastProductoId());
+                        Inventario.PromedioPonderado((int)nudExist.Value, dtpRegistro.Value, PModel.GetLastProductoId());
                         break;
                 }
                 Dispose();
@@ -84,7 +79,7 @@ namespace ProductosApp.Formularios
             else
             {
                 Producto p = new Producto(PModel.GetLastProductoId() + 1, (int)nudExist.Value, nudPrice.Value, txtNombre.Text, txtDesc.Text, dtpCaducity.Value, (UnidadMedida)cmbMeasureUnit.SelectedIndex);
-                CalculoInventario c = new CalculoInventario(p.ID,p.Existencia,p.Precio,Especie.Entrada, dtpCaducity.Value);
+                CalculoInventario c = new CalculoInventario(p.ID,p.Existencia,p.Precio,Especie.Entrada, dtpRegistro.Value);
                 PModel.Create(p);
                 Inventario.Add(c);
                 Dispose();

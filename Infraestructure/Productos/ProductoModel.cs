@@ -220,6 +220,17 @@ namespace Infraestructure.Productos
         {
             throw new NotImplementedException();
         }
+        public string Mostrar(Producto[] inventario)
+        {
+            string control = "";
+            for (int i = inventario.Length - 1; i >= 0; i--)
+            {
+               control = $@"Fecha: {inventario[i].FechaVencimiento}, Existencias: {inventario[i].Existencia}, Precio/Unidad: {inventario[i].Precio}, Precio Total:{inventario[i].Precio * inventario[i].Existencia}{Environment.NewLine}" + control;
+                
+            }
+            return control;
+
+        }
         #endregion
     }
 }

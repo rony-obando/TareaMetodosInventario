@@ -10,5 +10,6 @@ namespace AppCore.Interfaces
         int Update(T t);
         bool Delete(T t);
         T[] FindAll();
+        void Add(T t);
     }
 }

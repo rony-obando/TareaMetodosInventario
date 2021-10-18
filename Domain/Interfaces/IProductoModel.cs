@@ -14,7 +14,8 @@ namespace Domain.Interfaces
         Producto[] GetProductosByFechaVencimiento(DateTime dt);
         Producto[] GetProductosByRangoPrecio(decimal start, decimal end);
         Producto[] GetProductosByUnidadMedida(UnidadMedida um);
+        string Mostrar(Producto[] inventario);
 
-        
+
     }
 }

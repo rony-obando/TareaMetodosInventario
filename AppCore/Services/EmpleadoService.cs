@@ -15,6 +15,12 @@ namespace AppCore.Services
         {
             this.empleadoModel = empleadoModel;
         }
+
+        public void Add(Empleado t)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Create(Empleado t)
         {
             empleadoModel.Create(t);

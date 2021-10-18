@@ -1,12 +1,13 @@
 ﻿using Domain.Entities;
 using Domain.Enums;
+using Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Infraestructure.Productos.Inventario
 {
-    public class InventarioModel
+    public class InventarioModel:IInventarioModel
     {
         public CalculoInventario[] inventario;
         public void Add(CalculoInventario c)
@@ -14,7 +15,7 @@ namespace Infraestructure.Productos.Inventario
             Add(c, ref inventario);
             Array.Sort(inventario, new CalculoInventario.InventaById());
         }
-        private void Add(CalculoInventario p, ref CalculoInventario[] pds)
+        public void Add(CalculoInventario p, ref CalculoInventario[] pds)
         {
             if (pds == null)
             {
@@ -44,15 +45,9 @@ namespace Infraestructure.Productos.Inventario
                     b = c.Existencia + b;
                 }
             }
-            /*foreach (CalculoInventario c in Ventas)
-            {
-                    b = c.Existencia + b;
-                
-            }*/
             int d = 0;
             if (b > a)
             {
-                //throw new ArgumentException("Error de cantidades");
             }
             else
             {
@@ -81,7 +76,6 @@ namespace Infraestructure.Productos.Inventario
             decimal d = 0;
             if (b > a)
             {
-                //throw new ArgumentException("Error de cantidades");
             }
             else
             {
@@ -275,6 +269,25 @@ namespace Infraestructure.Productos.Inventario
             control = control + total;
             return control;
           
+        }
+        public void Create(CalculoInventario t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update(CalculoInventario t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(CalculoInventario t)
+        {
+            throw new NotImplementedException();
+        }
+
+        public CalculoInventario[] FindAll()
+        {
+            throw new NotImplementedException();
         }
     }
 }

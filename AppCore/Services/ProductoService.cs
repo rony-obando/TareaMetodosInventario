@@ -64,5 +64,15 @@ namespace AppCore.Services
         {
             return productoModel.Update(t);
         }
+
+        public string Mostrar(Producto[] inventario)
+        {
+            return productoModel.Mostrar(inventario);
+        }
+
+        public void Add(Producto t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

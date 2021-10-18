@@ -50,5 +50,10 @@ namespace Infraestructure.Empleados
         {
             return empleados;
         }
+
+        public void Add(Empleado t)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
